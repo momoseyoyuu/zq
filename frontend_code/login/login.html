@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>云改商机上报支撑系统</title>
+    <link rel="icon" type="image/png" sizes="127x127" href="./image/slogo.png" />
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="header">
+            <div class="logo">
+                <img src="./image/logo.png">
+            </div>
+        </div>
+        <div class="loginBox">
+            <div class="title">
+                <h1>云改商机上报支撑系统</h1>
+            </div>
+            <div class="loginForm">
+                <form action="javascript:;">
+                    <div class="username">
+                        <i><img src="./image/user.png" alt=""></i>
+                        <input type="text" placeholder="用户名" v-model="loginForm.username">
+                    </div>
+                    <div class="password">
+                        <i><img src="./image/password.png" alt=""></i>
+                        <input type="password" placeholder="密码" v-model="loginForm.password">
+                    </div>
+                    <div class="validInfo">
+                        <i>
+                            <img src="./image/alert.png" alt="">
+                        </i>
+                        <p>用户名或密码错误，请重新输入！</p>
+                    </div>
+                    <div class="loginBtn">
+                        <button onclick="doLogin()">登录</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    // 获取用户名和密码输入框
+    var username = document.querySelector('.username').querySelector('input');
+    var password = document.querySelector('.password').querySelector('input');
+    // 获取用户名和密码图标
+    var usernameIcon = document.querySelector('.username').querySelector('i');
+    var passwordIcon = document.querySelector('.password').querySelector('i');
+    // 获取验证提示信息
+    var validInfo = document.querySelector('.validInfo');
+    var validMessage = document.querySelector('.validInfo').querySelector('p');
+
+    // 点击图标定位到对应输入框
+    usernameIcon.onclick = () => {
+        username.focus()
+    }
+    passwordIcon.onclick = () => {
+        password.focus()
+    }
+
+    // 登录功能
+    function doLogin() {
+        var host = window.location.host;
+        var protocol = window.location.protocol;
+        var url = protocol + "//" + host;
+        var xhr = new XMLHttpRequest();
+
+        if (username.value === "") {
+            validMessage.innerText = "请输入用户名"
+            validInfo.style.cssText = "visibility:visible"
+        } else if (password.value === "") {
+            validMessage.innerText = "请输入密码"
+            validInfo.style.cssText = "visibility:visible"
+        } else {
+            // xhr.open('post', 'http://127.0.0.1:8090/doLogin');
+            xhr.open('post', url + '/doLogin');
+            //xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('content-type', 'application/json');
+            //xhr.send("username=" + username + "&password=" + password);
+            xhr.send(JSON.stringify({
+                'accountId': username.value,
+                'pass': password.value
+            }))
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    // 将返回的字符串转换为对象
+                    var res = JSON.parse(xhr.responseText)
+                        // 如果登录成功，跳转到home
+                    if (res.status === 'ok') {
+                        validInfo.style.cssText = "visibility:hidden"
+                        window.location.href = "./home.html";
+                    }
+                    // 如果登录失败，提示用户名或密码错误
+                    else {
+                        validMessage.innerText = "用户名或密码错误，请重新输入"
+                        validInfo.style.cssText = "visibility:visible"
+                    }
+                }
+            }
+        }
+
+    }
+
+    // 按下回车登录
+    document.onkeydown = function(event) {
+        if (event.keyCode == 13) {
+            doLogin();
+        }
+    }
+</script>
+
+</html>

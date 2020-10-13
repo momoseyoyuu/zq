@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../image/bg.jpg);
+  background-size: 100% 100%;
+}
+#container {
+  height: 100%;
+  position: relative;
+}
+#container .header {
+  height: 200px;
+  position: absolute;
+}
+#container .header .logo {
+  padding: 0px 0px;
+}
+#container .header .logo img {
+  width: 75%;
+  height: 75%;
+}
+#container .loginBox {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #E9E9F1;
+  width: 400px;
+  height: 280px;
+  user-select: none;
+  border-radius: 5px;
+}
+#container .loginBox .title {
+  position: absolute;
+  left: 50%;
+  top: 4%;
+  transform: translate(-50%, -2%);
+  width: 320px;
+}
+#container .loginBox .title h1 {
+  text-align: center;
+  color: #666666;
+}
+#container .loginBox .loginForm {
+  width: 320px;
+  height: 140px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+#container .loginBox .loginForm form {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 45%;
+}
+#container .loginBox .loginForm form .username,
+#container .loginBox .loginForm form .password {
+  width: 100%;
+  height: 40px;
+  margin: 20px 0px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#container .loginBox .loginForm form .username i,
+#container .loginBox .loginForm form .password i {
+  border-radius: 5px 0px 0px 5px;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: yellow;
+  font-weight: 600;
+  background: #CCCCCC;
+}
+#container .loginBox .loginForm form .username i img,
+#container .loginBox .loginForm form .password i img {
+  width: 66%;
+  height: 65%;
+}
+#container .loginBox .loginForm form .username input,
+#container .loginBox .loginForm form .password input {
+  border-radius: 0px 5px 5px 0px;
+  flex: 1;
+  height: 100%;
+  outline: none;
+  border: 0px;
+  padding-left: 10px;
+  font-size: 16px;
+}
+#container .loginBox .loginForm form .validInfo {
+  width: 100%;
+  height: 24px;
+  margin: 8px 0px;
+  visibility: hidden;
+  color: #e74c3c;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+#container .loginBox .loginForm form .validInfo i {
+  border-radius: 5px 0px 0px 5px;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+#container .loginBox .loginForm form .validInfo i img {
+  width: 66%;
+  height: 65%;
+}
+#container .loginBox .loginForm form .loginBtn button {
+  width: 320px;
+  height: 40px;
+  outline: none;
+  border: 0px;
+  background: #3498dbcc;
+  font-size: 24px;
+  color: #ffffff;
+  border-radius: 5px;
+}
+#container .loginBox .loginForm form .loginBtn button:active {
+  background: #3498db;
+}
